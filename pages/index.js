@@ -1,5 +1,5 @@
 function Home(){
-    return <h1>Me carrega pro ancestral ze!</h1>
+    return <h1>Estabilidade não existe!</h1>
 }
 
 export default Home;
