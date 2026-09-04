@@ -14,8 +14,9 @@ async function status(req, res) {
     text: "SELECT count(*)::int FROM pg_stat_activity WHERE datname = $1;",
     values: [databaseName],
   });
+
+  // rows count --> length do dado???
   const openedConnectionsValue = openedConnectionsResult.rows[0].count;
-  console.log(openedConnectionsValue, databaseVersion);
 
   res.status(200).send({
     updated_at: updatedAt,
