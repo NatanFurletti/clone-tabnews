@@ -4,7 +4,8 @@ async function status(req, res) {
   const updatedAt = new Date().toISOString();
 
   const databaseVersionResult = await database.query("SHOW server_version;");
-  const databaseVersionVersion = databaseVersionResult.rows[0].server_version;
+  const databaseVersion = databaseVersionResult.rows[0].server_version;
+
   const maxConnectionsResult = await database.query("SHOW max_connections;");
   const maxConnections = maxConnectionsResult.rows[0].max_connections;
 
@@ -14,12 +15,13 @@ async function status(req, res) {
     values: [databaseName],
   });
   const openedConnectionsValue = openedConnectionsResult.rows[0].count;
+  console.log(openedConnectionsValue, databaseVersion);
 
   res.status(200).send({
     updated_at: updatedAt,
     dependencies: {
       database: {
-        version: databaseVersionVersion,
+        version: databaseVersion,
         max_connections: parseInt(maxConnections),
         opened_connections: openedConnectionsValue,
       },
