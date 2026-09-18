@@ -1,5 +1,5 @@
-function status(request, response) {
-  response.status(200).json({ chave: "hello world" });
+function Home() {
+  return <h1>Hello World</h1>;
 }
 
-export default status;
+export default Home;
