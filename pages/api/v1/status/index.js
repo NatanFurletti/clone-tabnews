@@ -20,8 +20,10 @@ async function status(req, res) {
 
   res.status(200).json({
     updated_at: updatedAt,
+    environment: process.env.VERCEL_ENV || "local",
     dependencies: {
       database: {
+        project: process.env.DATABASE_PROJECT_NAME || "unknown",
         name: databaseName,
         version: databaseVersion,
         max_connections: parseInt(maxConnections),

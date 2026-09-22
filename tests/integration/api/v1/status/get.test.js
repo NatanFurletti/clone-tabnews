@@ -8,6 +8,15 @@ test("GET to /api/v1/status should return 200", async () => {
   const parsedUpdatedAt = new Date(responseBody.updated_at).toISOString();
   expect(responseBody.updated_at).toEqual(parsedUpdatedAt);
 
+  const environment = responseBody.environment;
+  expect(environment).toBe("local");
+
+  const databaseProject = responseBody.dependencies.database.project;
+  expect(databaseProject).toBe("local");
+
+  const databaseName = responseBody.dependencies.database.name;
+  expect(databaseName).toBe(process.env.POSTGRES_DB);
+
   const maxConnections = responseBody.dependencies.database.max_connections;
   expect(maxConnections).toBe(100);
 
