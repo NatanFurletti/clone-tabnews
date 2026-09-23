@@ -7,7 +7,7 @@ export default async function migrations(req, res) {
   const allowedMethods = ["GET", "POST"];
   if (!allowedMethods.includes(req.method)) {
     return res.status(405).json({
-      error: `Method '${request.method}'no allowed`,
+      error: `Method '${req.method}'no allowed`,
     });
   }
   let dbClient;
